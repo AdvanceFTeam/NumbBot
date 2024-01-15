@@ -10,3 +10,10 @@ A Simple NSFW Discord Bot with few SFW
   -------
 - if you are using replit you dont need `.env` put it in the secret tab(lock icon)
 - Also it will automatically install the packages for you when you click run 
+
+# Showcase
+
+
+
+https://github.com/AdvanceFTeam/NumbBot/assets/101320329/04b34dae-1057-453e-98a2-2a7eef4348f9
+
