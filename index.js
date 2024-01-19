@@ -23,6 +23,8 @@ client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
+const cooldowns = new Map();
+
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isCommand()) {
     const commandName = interaction.commandName;
@@ -38,10 +40,22 @@ client.on('interactionCreate', async (interaction) => {
     };
 
     if (commands[commandName]) {
+      const cooldownTime = 3000; // 3 seconds cooldown
+
+      if (cooldowns.has(interaction.user.id)) {
+        const expirationTime = cooldowns.get(interaction.user.id) + cooldownTime;
+
+        if (Date.now() < expirationTime) {
+          return interaction.reply(`Please wait ${((expirationTime - Date.now()) / 1000).toFixed(1)} seconds before using the \`${commandName}\` command again.`);
+        }
+      }
+
+      cooldowns.set(interaction.user.id, Date.now());
       await commands[commandName].execute(interaction);
     }
   }
 });
+
 
 client.login(process.env.DISCORD_TOKEN);
 
