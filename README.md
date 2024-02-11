@@ -2,7 +2,7 @@
 A Simple NSFW Discord Bot with few SFW
 
 ## How to start
-- Download the packages (Ex: `npm install discord.js`, or `npm install dotenv`, `npm install axios`, `npm install node-fetch`, `discord-api-types/v10`)
+- Download the packages (Ex: `npm install discord.js`, or `npm install dotenv`, `npm install axios`, `npm install node-fetch`, `npm install discord-api-types/v10`, `npm install pidusage`)
 - fill out the `.env` file
 - then `node index` or `node index.js`
 
