@@ -10,6 +10,7 @@ const avatarCommand = require('./commands/Fun/avatar');
 const avatarsCommand = require('./commands/util/avatar');
 const nekobotCommand = require('./commands/Nsfw/nekobot');
 const botinfoCommand = require('./commands/General/Info/botinfo');
+const waifuCommannd = require('./commands/Fun/waifu');
 
 
 const client = new Client({
@@ -37,6 +38,7 @@ client.on('interactionCreate', async (interaction) => {
       avatar: avatarsCommand,
       nekobot: nekobotCommand,
       botinfo: botinfoCommand,
+      waifu: waifuCommannd,
     };
 
     if (commands[commandName]) {
@@ -69,6 +71,7 @@ const commands = [
   avatarsCommand.data,
   nekobotCommand.data,
   botinfoCommand.data,
+  waifuCommannd.data,
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
@@ -78,12 +81,12 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
     console.log('Started refreshing application (/) commands.');
 
     await rest.put(
-      Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-      { body: commands }
+        Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+        { body: commands }
     );
 
     console.log('Successfully reloaded application (/) commands.');
-  } catch (error) {
-    console.error(error);
-  }
+} catch (error) {
+    console.error(error); // Log the error here
+}
 })();
