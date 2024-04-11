@@ -26,16 +26,16 @@ module.exports = {
       return await interaction.reply({ content: 'This command can only be used in NSFW channels.', ephemeral: true });
     }
 
-    const options = interaction.options;
-    const tagsOption = options.getString('tags');
-    const tagsInput = tagsOption.trim().split(',');
-    const encodedTags = tagsInput.map((tag) => encodeURIComponent(tag));
-    const joinedTags = encodedTags.join('%20');
-
-    let limit = options.getInteger('limit') || 5; // Default is 5 links for response
-    limit = Math.max(1, Math.min(10, limit)); // Limit to a reasonable range for links(10)
-
     try {
+      const options = interaction.options;
+      const tagsOption = options.getString('tags');
+      const tagsInput = tagsOption.trim().split(',');
+      const encodedTags = tagsInput.map((tag) => encodeURIComponent(tag));
+      const joinedTags = encodedTags.join('%20');
+
+      let limit = options.getInteger('limit') || 5; // Default is 5 links for response
+      limit = Math.max(1, Math.min(10, limit)); // Limit to a reasonable range for links(10)
+
       // Using deferReply instead of defer(idk why)
       await interaction.deferReply({ ephemeral: false });
 
